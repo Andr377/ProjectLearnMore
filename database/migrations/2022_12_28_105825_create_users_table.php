@@ -17,11 +17,12 @@ class CreateUsersTable extends Migration
             $table->id()->autoIncrement();
             $table->string('Name');
             $table->string('Username')->unique();
-            $table->string('Password');
-            $table->string('Email');
+            $table->string('password');
+            $table->string('email')->unique();
             $table->date('DOB');
             $table->date('JoinDate');
             $table->boolean('IsLecture');
+            $table->string('Role');
             $table->timestamps();
         });
     }

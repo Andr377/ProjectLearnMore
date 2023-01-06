@@ -9,12 +9,13 @@ class EnrollCourseDetail extends Model
 {
     use HasFactory;
 
-    public function course() {
+    public function course()
+    {
         return $this->belongsTo(Course::class);
     }
 
-    public function enrollCourse() {
+    public function enrollCourse()
+    {
         return $this->belongsTo(EnrollCourse::class);
     }
-
 }

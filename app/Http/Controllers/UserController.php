@@ -2,19 +2,65 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EnrollCourseDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function signIn(Request $request)
     {
-        //
+        $user = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if (Auth::attempt($user)) {
+            $request->session()->regenerate();
+
+            if (Auth::user()->Role == 'member') {
+                return redirect('/home');
+            }
+
+            return redirect('/admin');
+        }
+
+        return back()->with('loginError', 'Login Error!');
+    }
+
+    public function signUp(Request $request)
+    {
+    }
+
+    public function myProfileIndex()
+    {
+        $user = Auth::user();
+
+        return view('user.myProfile')->with('user', $user);
+    }
+
+    public function logOut()
+    {
+        Auth::logout();
+        session()->invalidate();
+        session()->regenerateToken();
+        return redirect('/');
+    }
+
+    public function myCoursesindex()
+    {
+        $user = Auth::user();
+        $enrolledCourses = DB::table('courses')
+            ->join('enroll_course_details', 'enroll_course_details.CourseId', '=', 'courses.id')
+            ->join('enroll_courses', 'enroll_course_details.EnrollCourseId', '=', 'enroll_courses.id')
+            ->where('enroll_courses.UserId', '=', $user->id)->get();
+
+        // dump($enrolledCourses);
+
+        return view('user.myCourses')->with('enrolledCourses', $enrolledCourses);
     }
 
     /**

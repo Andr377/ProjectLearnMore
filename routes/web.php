@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', [Controller::class, 'index']);
+Route::get('/', [Controller::class, 'index']);
+
+// Sign In dan Sign Up -> sama-sama masuk home.
+Route::post('/SignIn', [UserController::class, 'signIn']);
+Route::post('/SignUp', [UserController::class, 'signUp']);
+
+// Member's Routes
+Route::get('/home', [CourseController::class, 'index']);
+Route::get('/MyProfile', [UserController::class, 'myProfileIndex']);
+Route::get('/MyCourses', [UserController::class, 'myCoursesindex']);
+Route::get('/LogOut', [UserController::class, 'logOut']);
+
+
+// Admin's Routes

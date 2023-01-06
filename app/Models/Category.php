@@ -9,8 +9,8 @@ class Category extends Model
 {
     use HasFactory;
 
-    public function courseCategory() {
+    public function courseCategory()
+    {
         return $this->belongsTo(CourseCategory::class);
     }
-
 }

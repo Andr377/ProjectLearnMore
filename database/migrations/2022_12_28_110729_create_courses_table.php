@@ -17,7 +17,7 @@ class CreateCoursesTable extends Migration
             $table->id()->autoIncrement();
             $table->string('CourseTitle');
             $table->string('CourseDescription');
-            $table->float('Rating');
+            $table->float('RatingAvg');
             $table->date('CreatedDate');
             $table->unsignedBigInteger('LectureId');
             $table->foreign('LectureId')->references('id')->on('users')

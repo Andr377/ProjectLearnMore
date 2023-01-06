@@ -18,24 +18,21 @@ class LectureApprovalSeeder extends Seeder
             'Approve' => true,
             'RequestDate' => '2021-01-01',
             'ApprovalDate' => '2021-01-05',
-            'UserId' => 1,
-            'AdminId' => 1
+            'UserId' => 1
         ]);
 
         DB::table('lecture_approvals')->insert([
             'Approve' => true,
             'RequestDate' => '2021-01-01',
             'ApprovalDate' => '2021-01-06',
-            'UserId' => 2,
-            'AdminId' => 2
+            'UserId' => 2
         ]);
 
         DB::table('lecture_approvals')->insert([
             'Approve' => false,
             'RequestDate' => '2021-01-01',
             'ApprovalDate' => '2021-01-07',
-            'UserId' => 3,
-            'AdminId' => 2
+            'UserId' => 3
         ]);
 
     }

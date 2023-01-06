@@ -20,10 +20,7 @@ class CreateLectureApprovalsTable extends Migration
             $table->date('ApprovalDate');
             $table->unsignedBigInteger('UserId');
             $table->foreign('UserId')->references('id')->on('users')
-            ->onDelete('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('AdminId');
-            $table->foreign('AdminId')->references('id')->on('admins')
-            ->onDelete('cascade')->onDelete('cascade');
+                ->onDelete('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
