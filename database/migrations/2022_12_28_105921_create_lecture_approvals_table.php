@@ -15,9 +15,9 @@ class CreateLectureApprovalsTable extends Migration
     {
         Schema::create('lecture_approvals', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->boolean('Approve');
+            $table->boolean('Approve')->nullable();
             $table->date('RequestDate');
-            $table->date('ApprovalDate');
+            $table->date('ApprovalDate')->nullable();
             $table->unsignedBigInteger('UserId');
             $table->foreign('UserId')->references('id')->on('users')
                 ->onDelete('cascade')->onDelete('cascade');

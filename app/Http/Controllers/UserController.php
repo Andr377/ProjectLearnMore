@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\EnrollCourseDetail;
+use App\Models\LectureApproval;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +41,10 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
+        if ($user->Role == 'admin') {
+            return view('admin.myProfile')->with('user', $user);
+        }
+
         return view('user.myProfile')->with('user', $user);
     }
 
@@ -53,14 +59,18 @@ class UserController extends Controller
     public function myCoursesindex()
     {
         $user = Auth::user();
+        $myCourses = Course::join('users', 'users.id', '=', 'courses.LectureId')->where('users.id', $user->id)->get();
         $enrolledCourses = DB::table('courses')
             ->join('enroll_course_details', 'enroll_course_details.CourseId', '=', 'courses.id')
             ->join('enroll_courses', 'enroll_course_details.EnrollCourseId', '=', 'enroll_courses.id')
             ->where('enroll_courses.UserId', '=', $user->id)->get();
 
-        // dump($enrolledCourses);
+        return view('user.myCourses')->with('enrolledCourses', $enrolledCourses)->with('myCourses', $myCourses);
+    }
 
-        return view('user.myCourses')->with('enrolledCourses', $enrolledCourses);
+    public function adminIndex()
+    {
+        return view('admin.home');
     }
 
     /**

@@ -30,26 +30,11 @@
                         <a class="nav-link active" aria-current="page" href=@yield('home_button')>Home</a>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Course Category
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            @foreach ($categories as $category)
-                                <li><a class="dropdown-item" href="#">{{ $category->CategoryName }}</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
+                    @yield('navbar')
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">Customer Service</a>
                     </li>
-
-                    @yield('navbar')
 
                 </ul>
 

@@ -1,30 +1,16 @@
 @extends('template')
 
 @section('document_title')
-    My Courses
+    My Profile
 @endsection
 
 @section('home_button')
-    '/home'
+    '/admin'
 @endsection
 
 @section('navbar')
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Course Category
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            @foreach ($categories as $category)
-                <li><a class="dropdown-item" href="#">{{ $category->CategoryName }}</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-            @endforeach
-        </ul>
-    </li>
     <li class="nav-item">
-        <a class="nav-link" href="/MyCourses">My Courses</a>
+        <a class="nav-link" href="/LectureApproval">Lecture Requests</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/MyProfile">My Profile</a>
@@ -58,14 +44,7 @@
                     {{ $user->JoinDate }}
                 </li>
             </ul>
-            <p class="card-text text-center m-5">You are {{ $user->IsLecture ? 'a lecture' : 'not a lecture' }}</p>
         </div>
-
-        @if (!$user->IsLecture)
-            <div class="mt-5">
-                <a class="btn btn-primary" href="/LectureApproval">Become a Lecture</a>
-            </div>
-        @endif
 
         <div class="mt-5">
             <a class="btn btn-danger" href="/LogOut">Log Out</a>

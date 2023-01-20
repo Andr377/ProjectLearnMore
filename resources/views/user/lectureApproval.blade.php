@@ -32,32 +32,16 @@
 @endsection
 
 @section('body')
-    {{-- Show all courses. --}}
-    <div class="text-center m-5">
+    <div class="d-flex flex-column align-items-center mt-5">
         <h1>
-            All Courses
+            Awaiting for Admin's Permission
         </h1>
 
-    </div>
+        <h5>Request Date: {{ $reqDate }}</h5>
 
-    <div class="d-flex p-2">
-        @foreach ($courses as $course)
-            <div class="card text-center m-2 w-75">
-                <div class="card-header">
-                    <h6>
-                        Average Rating
-                    </h6>
-                    {{ $course->RatingAvg }}
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">{{ $course->CourseTitle }}</h5>
-                    <p class="card-text">{{ $course->CourseDescription }}</p>
-                    <a href="#" class="btn btn-primary">Enroll Now</a>
-                </div>
-                <div class="card-footer text-muted">
-                    {{ $course->CreatedDate }}
-                </div>
-            </div>
-        @endforeach
+        <div class="mt-5">
+            <a class="btn btn-danger" href="{{ url()->previous() }}">Back</a>
+        </div>
+
     </div>
 @endsection
