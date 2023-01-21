@@ -16,7 +16,9 @@
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             @foreach ($categories as $category)
-                <li><a class="dropdown-item" href="#">{{ $category->CategoryName }}</a></li>
+                <li>
+                    <a class="dropdown-item" href="/CourseCategory/{{ $category->id }}">{{ $category->CategoryName }}</a>
+                </li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>

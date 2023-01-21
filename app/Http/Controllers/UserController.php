@@ -6,13 +6,16 @@ use App\Models\Course;
 use App\Models\EnrollCourseDetail;
 use App\Models\LectureApproval;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
     public function signIn(Request $request)
     {
         $user = $request->validate([
@@ -35,6 +38,22 @@ class UserController extends Controller
 
     public function signUp(Request $request)
     {
+        $request->validate([
+            'username' => 'required|unique:users,Username',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+            'conf_password' => 'required|same:password|min:6'
+        ]);
+
+        $user = new User();
+        $user->Username = $request->username;
+        $user->Name = $request->username;
+        $user->password = Hash::make($request->password);
+        $user->email = $request->email;
+        $user->JoinDate = Carbon::now()->toDateString();
+        $user->save();
+
+        return back()->with('signUpSuccess', 'Sign Up Success!');
     }
 
     public function myProfileIndex()
@@ -71,71 +90,5 @@ class UserController extends Controller
     public function adminIndex()
     {
         return view('admin.home');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
     }
 }

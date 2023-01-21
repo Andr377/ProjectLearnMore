@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\CourseCategoryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LectureApprovalController;
 use App\Http\Controllers\UserController;
@@ -27,6 +28,7 @@ Route::post('/SignUp', [UserController::class, 'signUp']);
 Route::get('/home', [CourseController::class, 'index']);
 Route::get('/MyProfile', [UserController::class, 'myProfileIndex']);
 Route::get('/MyCourses', [UserController::class, 'myCoursesindex']);
+Route::get('/CourseCategory/{categoryId}', [CourseCategoryController::class, 'categoryIndex']);
 Route::get('/LogOut', [UserController::class, 'logOut']);
 
 // Admin's Routes

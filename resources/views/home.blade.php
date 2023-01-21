@@ -16,6 +16,18 @@
                 Sign Up
             </h3>
 
+            @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $errors->first() }}
+                </div>
+            @endif
+
+            @if (session()->has('signUpSuccess'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('signUpSuccess') }}
+                </div>
+            @endif
+
             <form action="/SignUp" method='POST' class="align-items-center d-flex flex-column">
                 @csrf
                 <div class="input-group mb-3">
@@ -31,7 +43,7 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Phone Number" name="phone_number">
+                    <input type="password" class="form-control" placeholder="Confirm Password" name="conf_password">
                 </div>
 
                 <button type="submit" class="btn btn-primary mt-5 w-50">Sign Up</button>

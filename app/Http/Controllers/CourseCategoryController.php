@@ -2,84 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\CourseCategory;
 use Illuminate\Http\Request;
 
 class CourseCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function categoryIndex($id)
     {
-        //
-    }
+        $courses = CourseCategory::join('courses', 'courses.id', '=', 'course_categories.CourseId')
+            ->where('course_categories.CategoryId', '=', $id)->get();
+        $category = Category::find($id);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\CourseCategory  $courseCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function show(CourseCategory $courseCategory)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\CourseCategory  $courseCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CourseCategory $courseCategory)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CourseCategory  $courseCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, CourseCategory $courseCategory)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\CourseCategory  $courseCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(CourseCategory $courseCategory)
-    {
-        //
+        return view('user.courseCategory')->with('courses', $courses)->with('categoryName', $category->CategoryName);
     }
 }

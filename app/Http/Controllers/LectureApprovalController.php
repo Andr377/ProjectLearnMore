@@ -10,16 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class LectureApprovalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $user = Auth::user();
 
-        if($user->Role == 'admin') {
+        if ($user->Role == 'admin') {
             $lecRequests = User::join('lecture_approvals', 'users.id', '=', 'lecture_approvals.UserId')->get();
             return view('admin.lectureApproval')->with('lecRequests', $lecRequests);
         }
@@ -33,9 +29,9 @@ class LectureApprovalController extends Controller
         return view('user.lectureApproval')->with('reqDate', $lecApproval->RequestDate);
     }
 
-    public function approval($check, $userId, $approveId) {
-
-        if($check == '1') {
+    public function approval($check, $userId, $approveId)
+    {
+        if ($check == '1') {
             $user = User::find($userId);
             $user->IsLecture = 1;
             $user->save();
@@ -47,71 +43,5 @@ class LectureApprovalController extends Controller
         $approveData->save();
 
         return redirect('/LectureApproval');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\LectureApproval  $lectureApproval
-     * @return \Illuminate\Http\Response
-     */
-    public function show(LectureApproval $lectureApproval)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\LectureApproval  $lectureApproval
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(LectureApproval $lectureApproval)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\LectureApproval  $lectureApproval
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, LectureApproval $lectureApproval)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\LectureApproval  $lectureApproval
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(LectureApproval $lectureApproval)
-    {
-        //
     }
 }
