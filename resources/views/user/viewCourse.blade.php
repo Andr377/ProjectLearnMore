@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('document_title')
-    Home
+    Course
 @endsection
 
 @section('home_button')
@@ -34,32 +34,39 @@
 @endsection
 
 @section('body')
-    {{-- Show all courses. --}}
+    {{-- Show all my enrolled courses. --}}
     <div class="text-center m-5">
         <h1>
-            All Courses
+            {{ $course->CourseTitle }}
         </h1>
+        <h5>
+            {{ $course->CourseDescription }}
+        </h5>
+        <h6>
+            Created at:
+            {{ $course->CreatedDate }}
+        </h6>
 
     </div>
 
-    <div class="d-flex p-2">
-        @foreach ($courses as $course)
-            <div class="card text-center m-2 w-75">
-                <div class="card-header">
-                    <h6>
-                        Average Rating
-                    </h6>
-                    {{ $course->RatingAvg }}
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">{{ $course->CourseTitle }}</h5>
-                    <p class="card-text">{{ $course->CourseDescription }}</p>
-                    <a href="/EnrollCourse/{{ $course->id }}" class="btn btn-primary">Enroll Now</a>
-                </div>
-                <div class="card-footer text-muted">
-                    {{ $course->CreatedDate }}
-                </div>
-            </div>
-        @endforeach
+    <div class="d-flex p-5">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">View Material</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach ($materials as $material)
+                    <tr>
+                        <td><a href="{{ asset($material->FilePath) }}" target="_blank" class="text-decoration-none">Click Here</a></td>
+                        <td>{{ $material->MaterialDescription }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
     </div>
 @endsection

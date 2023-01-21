@@ -54,7 +54,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $course->CourseTitle }}</h5>
                     <p class="card-text">{{ $course->CourseDescription }}</p>
-                    <a href="#" class="btn btn-primary">Enroll Now</a>
+                    <a href="/EnrollCourse/{{ $course->id }}" class="btn btn-primary">Enroll Now</a>
                 </div>
                 <div class="card-footer text-muted">
                     {{ $course->CreatedDate }}

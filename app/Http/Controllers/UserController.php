@@ -84,7 +84,7 @@ class UserController extends Controller
             ->join('enroll_courses', 'enroll_course_details.EnrollCourseId', '=', 'enroll_courses.id')
             ->where('enroll_courses.UserId', '=', $user->id)->get();
 
-        return view('user.myCourses')->with('enrolledCourses', $enrolledCourses)->with('myCourses', $myCourses);
+        return view('user.myCourses')->with('enrolledCourses', $enrolledCourses)->with('myCourses', $myCourses)->with('user', $user);
     }
 
     public function adminIndex()

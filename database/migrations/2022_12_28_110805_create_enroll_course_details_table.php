@@ -15,8 +15,8 @@ class CreateEnrollCourseDetailsTable extends Migration
     {
         Schema::create('enroll_course_details', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->float('Rating');
-            $table->string('RatingDescription');
+            $table->float('Rating')->nullable();
+            $table->string('RatingDescription')->nullable();
             $table->date('DateEnrolled');
             $table->integer('TotalUsersEnrolled');
             $table->unsignedBigInteger('EnrollCourseId');

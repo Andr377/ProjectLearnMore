@@ -3,6 +3,8 @@
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CourseCategoryController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\EnrollCourseController;
+use App\Http\Controllers\EnrollCourseDetailController;
 use App\Http\Controllers\LectureApprovalController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +30,8 @@ Route::post('/SignUp', [UserController::class, 'signUp']);
 Route::get('/home', [CourseController::class, 'index']);
 Route::get('/MyProfile', [UserController::class, 'myProfileIndex']);
 Route::get('/MyCourses', [UserController::class, 'myCoursesindex']);
+Route::get('/EnrollCourse/{courseId}', [EnrollCourseController::class, 'enrollCourse']);
+Route::get('/ViewCourse/{courseId}', [EnrollCourseDetailController::class, 'viewCourse']);
 Route::get('/CourseCategory/{categoryId}', [CourseCategoryController::class, 'categoryIndex']);
 Route::get('/LogOut', [UserController::class, 'logOut']);
 
