@@ -37,7 +37,7 @@
 
     @if ($user->IsLecture)
         <div class="d-flex flex-row-reverse mt-5 me-5">
-            <a class="btn btn-primary" href="#">Create New Course</a>
+            <a class="btn btn-primary" href="/InsertNewCourse">Create New Course</a>
 
         </div>
     @endif
@@ -63,7 +63,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $myCourse->CourseTitle }}</h5>
                         <p class="card-text">{{ $myCourse->CourseDescription }}</p>
-                        <a href="#" class="btn btn-primary">View Course</a>
+                        <a href="/ManageCourse/{{ $myCourse->id }}" class="btn btn-primary">Manage Course</a>
                     </div>
                     <div class="card-footer text-muted">
                         <h6>

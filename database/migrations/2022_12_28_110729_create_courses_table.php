@@ -17,11 +17,11 @@ class CreateCoursesTable extends Migration
             $table->id()->autoIncrement();
             $table->string('CourseTitle');
             $table->string('CourseDescription');
-            $table->float('RatingAvg');
+            $table->float('RatingAvg')->default(0);
             $table->date('CreatedDate');
             $table->unsignedBigInteger('LectureId');
             $table->foreign('LectureId')->references('id')->on('users')
-            ->onDelete('cascade')->onDelete('cascade');
+                ->onDelete('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CourseCategoryController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CourseMaterialController;
 use App\Http\Controllers\EnrollCourseController;
 use App\Http\Controllers\EnrollCourseDetailController;
 use App\Http\Controllers\LectureApprovalController;
@@ -32,6 +33,12 @@ Route::get('/MyProfile', [UserController::class, 'myProfileIndex']);
 Route::get('/MyCourses', [UserController::class, 'myCoursesindex']);
 Route::get('/EnrollCourse/{courseId}', [EnrollCourseController::class, 'enrollCourse']);
 Route::get('/ViewCourse/{courseId}', [EnrollCourseDetailController::class, 'viewCourse']);
+Route::get('/InsertNewCourse', [CourseController::class, 'insertCourseIndex']);
+Route::post('/InsertNewCourse', [CourseController::class, 'insertCourse']);
+Route::get('/ManageCourse/{courseId}', [CourseController::class, 'editCourse']);
+Route::get('/ManageCourse/InsertNewMaterial/{courseId}', [CourseMaterialController::class, 'insertMaterialIndex']);
+Route::post('/ManageCourse/InsertNewMaterial/{courseId}', [CourseMaterialController::class, 'insertMaterial']);
+Route::get('/ManageCourse/DeleteCourse/{courseId}', [CourseController::class, 'deleteCourse']);
 Route::get('/CourseCategory/{categoryId}', [CourseCategoryController::class, 'categoryIndex']);
 Route::get('/LogOut', [UserController::class, 'logOut']);
 
