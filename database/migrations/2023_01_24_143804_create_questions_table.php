@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEnrollCoursesTable extends Migration
+class CreateQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateEnrollCoursesTable extends Migration
      */
     public function up()
     {
-        Schema::create('enroll_courses', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->id()->autoIncrement();
+            $table->string('Question');
             $table->unsignedBigInteger('UserId');
             $table->foreign('UserId')->references('id')->on('users')
                 ->onDelete('cascade')->onDelete('cascade');
@@ -29,6 +30,6 @@ class CreateEnrollCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('enroll_courses');
+        Schema::dropIfExists('questions');
     }
 }

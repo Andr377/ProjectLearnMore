@@ -24,4 +24,19 @@ class EnrollCourseDetailController extends Controller
 
         return view('user.viewCourse')->with('course', $course)->with('materials', $materials);
     }
+
+    public function insertReview(Request $request, $courseId, $enrollCourseId) {
+        $request->validate([
+            'rating' => 'required|numeric',
+            'description' => 'required|max:255',
+        ]);
+
+        $enrollCourseDetail = EnrollCourseDetail::find($enrollCourseId);
+        $enrollCourseDetail->Rating = $request->rating;
+        $enrollCourseDetail->RatingDescription = $request->description;
+        $enrollCourseDetail->save();
+
+        return redirect('/ViewCourse'.'/'.$courseId);
+    }
+
 }

@@ -33,6 +33,7 @@ Route::get('/MyProfile', [UserController::class, 'myProfileIndex'])->middleware(
 Route::get('/MyCourses', [UserController::class, 'myCoursesindex'])->middleware('auth');
 Route::get('/EnrollCourse/{courseId}', [EnrollCourseController::class, 'enrollCourse']);
 Route::get('/ViewCourse/{courseId}', [EnrollCourseDetailController::class, 'viewCourse']);
+Route::post('/MakeReview/{CourseId}/{EnrollCourseId}', [EnrollCourseDetailController::class, 'insertReview']);
 Route::get('/InsertNewCourse', [CourseController::class, 'insertCourseIndex'])->middleware('lecturer');
 Route::post('/InsertNewCourse', [CourseController::class, 'insertCourse'])->middleware('lecturer');
 Route::get('/ManageCourse/{courseId}', [CourseController::class, 'editCourse'])->middleware('lecturer');
@@ -40,6 +41,8 @@ Route::get('/ManageCourse/InsertNewMaterial/{courseId}', [CourseMaterialControll
 Route::post('/ManageCourse/InsertNewMaterial/{courseId}', [CourseMaterialController::class, 'insertMaterial'])->middleware('lecturer');
 Route::get('/ManageCourse/DeleteCourse/{courseId}', [CourseController::class, 'deleteCourse'])->middleware('auth');
 Route::get('/CourseCategory/{categoryId}', [CourseCategoryController::class, 'categoryIndex'])->middleware('auth');
+Route::get('/AskAdmin', [UserController::class, 'complainIndex'])->middleware('auth');
+Route::post('/AskAdmin', [UserController::class, 'insertComplain'])->middleware('auth');
 Route::get('/LogOut', [UserController::class, 'logOut']);
 
 // Admin's Routes

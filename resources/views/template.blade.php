@@ -33,7 +33,7 @@
                     @yield('navbar')
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Customer Service</a>
+                        <a class="nav-link" href="/AskAdmin">Customer Service</a>
                     </li>
 
                 </ul>

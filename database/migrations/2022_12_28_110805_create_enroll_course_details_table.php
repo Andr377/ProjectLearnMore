@@ -21,10 +21,10 @@ class CreateEnrollCourseDetailsTable extends Migration
             $table->integer('TotalUsersEnrolled');
             $table->unsignedBigInteger('EnrollCourseId');
             $table->foreign('EnrollCourseId')->references('id')->on('enroll_courses')
-            ->onDelete('cascade')->onDelete('cascade');
+                ->onDelete('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('CourseId');
             $table->foreign('CourseId')->references('id')->on('courses')
-            ->onDelete('cascade')->onDelete('cascade');
+                ->onDelete('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

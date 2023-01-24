@@ -61,12 +61,53 @@
             <tbody>
                 @foreach ($materials as $material)
                     <tr>
-                        <td><a href="{{ asset($material->FilePath) }}" target="_blank" class="text-decoration-none">Click Here</a></td>
+                        <td><a href="{{ asset($material->FilePath) }}" target="_blank" class="text-decoration-none">Click
+                                Here</a></td>
                         <td>{{ $material->MaterialDescription }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-
     </div>
+
+    @if ($course->Rating)
+        <div class="d-flex flex-column  mt-5 p-5">
+            <div>
+                <h6>
+                    Your Rating: {{ $course->Rating }}
+                </h6>
+            </div>
+
+            <div class="mt-5">
+                <h6>
+                    Your Review
+                </h6>
+                <p>
+                    {{ $course->RatingDescription }}
+                </p>
+            </div>
+        </div>
+    @else
+        <div class="p-5 w-50">
+            @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $errors->first() }}
+                </div>
+            @endif
+
+            <form action="/MakeReview/{{ $course->CourseId }}/{{ $course->EnrollCourseId }}" method='POST'
+                class="align-items-center d-flex flex-column">
+                @csrf
+                <div class="input-group mb-3">
+                    <input type="float" class="form-control" placeholder="Your Rating" name="rating">
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Your Review Description" name="description">
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-5 w-25">Create a Review</button>
+            </form>
+        </div>
+    @endif
 @endsection

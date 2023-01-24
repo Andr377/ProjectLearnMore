@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\EnrollCourseDetail;
 use App\Models\LectureApproval;
+use App\Models\Question;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -90,5 +91,32 @@ class UserController extends Controller
     public function adminIndex()
     {
         return view('admin.home');
+    }
+
+    public function complainIndex()
+    {
+        if (Auth::user()->Role == 'admin') {
+            $questions = User::join('questions', 'users.id', '=', 'questions.UserId')->get();
+
+            return view('admin.customerService')->with('questions', $questions);
+        }
+
+        return view('user.customerService');
+    }
+
+    public function insertComplain(Request $request)
+    {
+        $request->validate([
+            'question' => 'required'
+        ]);
+
+        $user = Auth::user();
+
+        $question = new Question();
+        $question->UserId = $user->id;
+        $question->Question = $request->question;
+        $question->save();
+
+        return redirect('/home');
     }
 }
