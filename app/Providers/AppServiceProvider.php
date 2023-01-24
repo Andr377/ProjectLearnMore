@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,5 +32,13 @@ class AppServiceProvider extends ServiceProvider
             $categories = DB::table('categories')->get();
             view()->share('categories', $categories);
         }
+
+        Gate::define('admin', function(User $user) {
+            return $user->Role == "admin";
+        });
+
+        Gate::define('lecturer', function(User $user) {
+            return $user->IsLecturer == 1;
+        });
     }
 }

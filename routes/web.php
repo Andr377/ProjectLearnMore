@@ -28,23 +28,23 @@ Route::post('/SignIn', [UserController::class, 'signIn']);
 Route::post('/SignUp', [UserController::class, 'signUp']);
 
 // Member's Routes
-Route::get('/home', [CourseController::class, 'index']);
-Route::get('/MyProfile', [UserController::class, 'myProfileIndex']);
-Route::get('/MyCourses', [UserController::class, 'myCoursesindex']);
+Route::get('/home', [CourseController::class, 'index'])->middleware('auth');
+Route::get('/MyProfile', [UserController::class, 'myProfileIndex'])->middleware('auth');
+Route::get('/MyCourses', [UserController::class, 'myCoursesindex'])->middleware('auth');
 Route::get('/EnrollCourse/{courseId}', [EnrollCourseController::class, 'enrollCourse']);
 Route::get('/ViewCourse/{courseId}', [EnrollCourseDetailController::class, 'viewCourse']);
-Route::get('/InsertNewCourse', [CourseController::class, 'insertCourseIndex']);
-Route::post('/InsertNewCourse', [CourseController::class, 'insertCourse']);
-Route::get('/ManageCourse/{courseId}', [CourseController::class, 'editCourse']);
-Route::get('/ManageCourse/InsertNewMaterial/{courseId}', [CourseMaterialController::class, 'insertMaterialIndex']);
-Route::post('/ManageCourse/InsertNewMaterial/{courseId}', [CourseMaterialController::class, 'insertMaterial']);
-Route::get('/ManageCourse/DeleteCourse/{courseId}', [CourseController::class, 'deleteCourse']);
-Route::get('/CourseCategory/{categoryId}', [CourseCategoryController::class, 'categoryIndex']);
+Route::get('/InsertNewCourse', [CourseController::class, 'insertCourseIndex'])->middleware('lecturer');
+Route::post('/InsertNewCourse', [CourseController::class, 'insertCourse'])->middleware('lecturer');
+Route::get('/ManageCourse/{courseId}', [CourseController::class, 'editCourse'])->middleware('lecturer');
+Route::get('/ManageCourse/InsertNewMaterial/{courseId}', [CourseMaterialController::class, 'insertMaterialIndex'])->middleware('lecturer');
+Route::post('/ManageCourse/InsertNewMaterial/{courseId}', [CourseMaterialController::class, 'insertMaterial'])->middleware('lecturer');
+Route::get('/ManageCourse/DeleteCourse/{courseId}', [CourseController::class, 'deleteCourse'])->middleware('auth');
+Route::get('/CourseCategory/{categoryId}', [CourseCategoryController::class, 'categoryIndex'])->middleware('auth');
 Route::get('/LogOut', [UserController::class, 'logOut']);
 
 // Admin's Routes
-Route::get('/admin', [UserController::class, 'adminIndex']);
+Route::get('/admin', [UserController::class, 'adminIndex'])->middleware('admin');
 
 // Admin's and Member's Routes
-Route::get('/LectureApproval', [LectureApprovalController::class, 'index']);
-Route::get('/LectureApproval/{approve}/{UserId}/{reqId}', [LectureApprovalController::class, 'approval']);
+Route::get('/LectureApproval', [LectureApprovalController::class, 'index'])->middleware('auth');
+Route::get('/LectureApproval/{approve}/{UserId}/{reqId}', [LectureApprovalController::class, 'approval'])->middleware('auth');
