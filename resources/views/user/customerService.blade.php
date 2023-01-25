@@ -34,8 +34,8 @@
 @endsection
 
 @section('body')
-    <div class="d-flex flex-column align-items-center me-5">
-        <h3 class="text-center mb-5">
+    <div class="d-flex flex-column align-items-center me-5 ">
+        <h3 class="text-center mb-5 mt-5">
             Ask Questions
         </h3>
 
@@ -45,7 +45,7 @@
             </div>
         @endif
 
-        <form action="/AskAdmin" method='POST' class="align-items-center d-flex flex-column">
+        <form action="/AskAdmin" method='POST' class="align-items-center d-flex flex-column ms-5 border border-2 rounded p-3">
             @csrf
             <div class="input-group mb-3 d-flex flex-column">
                 <label for="question">Insert your questions:</label>

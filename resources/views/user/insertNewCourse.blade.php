@@ -46,7 +46,7 @@
         </div>
     @endif
 
-    <div class="d-flex justify-content-center mt-5">
+    <div class="d-flex justify-content-center mt-">
         <form action="/InsertNewCourse" method='POST' class="align-items-center d-flex flex-column">
             @csrf
             <div class="input-group mb-3">
@@ -61,8 +61,7 @@
                 <input type="text" class="form-control" placeholder="Course Category" name="course_category">
             </div>
 
-            <button type="submit" class="btn btn-primary mt-5 w-50">Insert New Course</button>
+            <button type="submit" class="btn btn-primary mt-5 w-70">Insert New Course</button>
         </form>
-
     </div>
 @endsection

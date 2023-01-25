@@ -11,7 +11,7 @@
 @section('body')
     <div class="justify-content-center d-flex mt-5">
 
-        <div class="d-flex flex-column align-items-center me-5">
+        <div class="d-flex flex-column align-items-center me-5 border border-2 rounded p-3">
             <h3 class="text-center mb-5">
                 Sign Up
             </h3>
@@ -46,11 +46,11 @@
                     <input type="password" class="form-control" placeholder="Confirm Password" name="conf_password">
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-5 w-50">Sign Up</button>
+                <button type="submit" class="btn btn-primary mt-5 w-75">Sign Up</button>
             </form>
         </div>
 
-        <div class="d-flex flex-column align-items-center ms-5">
+        <div class="d-flex flex-column align-items-center ms-5 border border-2 rounded p-3">
             <h3 class="text-center mb-5">
                 Sign In
             </h3>
@@ -71,7 +71,7 @@
                     <input type="password" class="form-control" placeholder="Password" name="password">
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-5 w-50">Sign In</button>
+                <button type="submit" class="btn btn-primary mt-5 w-75">Sign In</button>
             </form>
         </div>
 

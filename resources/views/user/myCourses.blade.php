@@ -86,7 +86,7 @@
 
     <div class="d-flex p-2">
         @foreach ($enrolledCourses as $enrolledCourse)
-            <div class="card text-center m-2 w-75">
+            <div class="card text-center m-auto w-55">
                 <div class="card-header">
                     <h6>
                         Your Rating

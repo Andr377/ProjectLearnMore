@@ -34,17 +34,20 @@
 @endsection
 
 @section('body')
-    {{-- Show all courses. --}}
-    <div class="text-center m-5">
-        <h1>
-            All Courses
-        </h1>
+    <section class="home" id="home">
+        <div class="content">
+            <h3>The Best Courses</h3>
+            <h3>You Will Find Here!</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, dolorem? Voluptatum accusamus iste ratione
+                quia eius officia, dicta assumenda laudantium nesciunt tempore sapiente perspiciatis earum reiciendis
+                deleniti officiis aut nisi.</p>
+            <a href="#" class="btn">Get Started</a>
+        </div>
+    </section>
 
-    </div>
-
-    <div class="d-flex p-2">
+    <div class="d-flex justify-content-center p-2 row row-cols-1 row-cols-sm-2  row-cols-lg-4 g-5">
         @foreach ($courses as $course)
-            <div class="card text-center m-2 w-75">
+            <div class="card text-center m-5 w-10">
                 <div class="card-header">
                     <h6>
                         Average Rating

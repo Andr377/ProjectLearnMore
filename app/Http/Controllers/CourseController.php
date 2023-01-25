@@ -16,7 +16,7 @@ class CourseController extends Controller
     public function index()
     {
         // -> Show all courses.
-        $courses = Course::all();
+        $courses = Course::paginate(6);
 
         return view('user.home')->with('courses', $courses);
     }
